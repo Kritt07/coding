@@ -1,0 +1,14 @@
+C:\TopIt\Программирование\Tasks\consoleApp1\bin\Debug\net9.0\consoleApp1.exe
+C:\TopIt\Программирование\Tasks\consoleApp1\bin\Debug\net9.0\consoleApp1.deps.json
+C:\TopIt\Программирование\Tasks\consoleApp1\bin\Debug\net9.0\consoleApp1.runtimeconfig.json
+C:\TopIt\Программирование\Tasks\consoleApp1\bin\Debug\net9.0\consoleApp1.dll
+C:\TopIt\Программирование\Tasks\consoleApp1\bin\Debug\net9.0\consoleApp1.pdb
+C:\TopIt\Программирование\Tasks\consoleApp1\obj\Debug\net9.0\consoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\TopIt\Программирование\Tasks\consoleApp1\obj\Debug\net9.0\consoleApp1.AssemblyInfoInputs.cache
+C:\TopIt\Программирование\Tasks\consoleApp1\obj\Debug\net9.0\consoleApp1.AssemblyInfo.cs
+C:\TopIt\Программирование\Tasks\consoleApp1\obj\Debug\net9.0\consoleApp1.csproj.CoreCompileInputs.cache
+C:\TopIt\Программирование\Tasks\consoleApp1\obj\Debug\net9.0\consoleApp1.dll
+C:\TopIt\Программирование\Tasks\consoleApp1\obj\Debug\net9.0\refint\consoleApp1.dll
+C:\TopIt\Программирование\Tasks\consoleApp1\obj\Debug\net9.0\consoleApp1.pdb
+C:\TopIt\Программирование\Tasks\consoleApp1\obj\Debug\net9.0\consoleApp1.genruntimeconfig.cache
+C:\TopIt\Программирование\Tasks\consoleApp1\obj\Debug\net9.0\ref\consoleApp1.dll

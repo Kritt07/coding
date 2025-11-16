@@ -17,14 +17,16 @@ public class RightBorderTask
 	/// </remarks>
 	public static int GetRightBorderIndex(IReadOnlyList<string> phrases, string prefix, int left, int right)
 	{
-		// IReadOnlyList похож на List, но у него нет методов модификации списка.
-		// Этот код решает задачу, но слишком неэффективно. Замените его на бинарный поиск!
-		for (int i = phrases.Count-1; i >= 0; i--)
-		{
-			if (string.Compare(prefix, phrases[i], StringComparison.InvariantCultureIgnoreCase) >= 0 
-			    || phrases[i].StartsWith(prefix, StringComparison.InvariantCultureIgnoreCase))
-				return i + 1;
-		}
-		return 0;
+		while (left + 1 < right)
+        {
+			var middle = left + (right - left) / 2;
+			if (string.Compare(phrases[middle], prefix, StringComparison.CurrentCultureIgnoreCase) > 0
+				&& !phrases[middle].StartsWith(prefix, StringComparison.CurrentCultureIgnoreCase))
+                right = middle;
+			else
+				left = middle;
+        }
+
+		return right;
 	}
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("autocomplete")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+efd0828893898dad187fb9e37cfc4e958cdbb3db")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6adf2b4fcf80a023dee95565f75f288854cdc098")]
 [assembly: System.Reflection.AssemblyProductAttribute("autocomplete")]
 [assembly: System.Reflection.AssemblyTitleAttribute("autocomplete")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -80,3 +80,4 @@ C:\TopIt\Coding\image\obj\Debug\net8.0\refint\Image.dll
 C:\TopIt\Coding\image\obj\Debug\net8.0\Image.pdb
 C:\TopIt\Coding\image\obj\Debug\net8.0\Image.genruntimeconfig.cache
 C:\TopIt\Coding\image\obj\Debug\net8.0\ref\Image.dll
+C:\TopIt\Coding\image\obj\Debug\net8.0\Image.sourcelink.json

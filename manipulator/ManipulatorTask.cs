@@ -4,6 +4,7 @@ using static Manipulation.TriangleTask;
 using static Manipulation.Manipulator;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Manipulation;
 
@@ -35,8 +36,8 @@ public static class ManipulatorTask
 		var d = new Point(x, y);
 
 		// нахождение координат точки C
-		var cx = Math.Cos(Math.PI - alpha) - x;
-		var cy = Math.Sin(Math.PI - alpha) - y;
+		var cx = x - Math.Cos(alpha) * Palm;
+		var cy = y - Math.Sin(alpha) * Palm;
 		Point c = new Point(cx, cy);
 
         var ac = Distance(a, c);
@@ -69,7 +70,6 @@ public static class ManipulatorTask
 		var shoulderFirstPart = GetABAngle(UpperArm, ac, Forearm);
 		var shoulder = shoulderFirstPart + Math.Asin(cq / UpperArm);
 
-
 		return new[] { shoulder, elbow, wrist };
 	}
 
@@ -93,12 +93,12 @@ public static class ManipulatorTask
         // Первое решение
         var b1x = h.X + bh * perpendicularX;
         var b1y = h.Y + bh * perpendicularY;
-        solutions.Add(new Point((int)b1x, (int)b1y));
+        solutions.Add(new Point(b1x, b1y));
         
         // Второе решение
         var b2x = h.X - bh * perpendicularX;
         var b2y = h.Y - bh * perpendicularY;
-        solutions.Add(new Point((int)b2x, (int)b2y));
+        solutions.Add(new Point(b2x, b2y));
 
 		return solutions;
     }
@@ -128,17 +128,16 @@ public static class ManipulatorTask
         return Math.Acos(cosAngle);
     }
 
-	public static Point SelectCorrectSolution(List<Point> solutions, Point a, Point c, double wrist, double tolerance = 1.0)
+	public static Point SelectCorrectSolution(List<Point> solutions, Point a, Point c, double elbow, double tolerance = 1.0)
     {
         foreach (var candidateB in solutions)
         {
 			var expectedAngleB = CalculateAngleB(a, candidateB, c);
-            if (Math.Abs(wrist - expectedAngleB) <= tolerance)
+            if (Math.Abs(elbow - expectedAngleB) <= tolerance)
                 return candidateB;
         }
 
         // Если ни одно решение не подходит, возвращаем первое
-        Console.WriteLine("Внимание: не удалось найти решение с заданным углом B. Возвращено первое решение.");
         return solutions[0];
     }
 }

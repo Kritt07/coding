@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("manipulator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+15303762efd88ab958d499686215a47e32f607c6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d20c1452f7f308c65c451820f6c4e977936ffcfa")]
 [assembly: System.Reflection.AssemblyProductAttribute("manipulator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("manipulator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

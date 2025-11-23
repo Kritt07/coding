@@ -2,9 +2,6 @@ using System;
 using NUnit.Framework;
 using static Manipulation.TriangleTask;
 using static Manipulation.Manipulator;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace Manipulation;
 

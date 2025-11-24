@@ -20,60 +20,131 @@ public static class VisualizerTask
 	public static Pen ManipulatorPen = new Pen(Brushes.Black, 3);
 	public static Brush JointBrush = new SolidColorBrush(Colors.Gray);
 
-	public static void KeyDown(Visual visual, KeyEventArgs key)
-	{
-		// TODO: Добавьте реакцию на QAWS и пересчитывать Wrist
+    public static void KeyDown(Visual visual, KeyEventArgs key)
+    {
+        const double delta = 0.05;
 
-		visual.InvalidateVisual(); // вызывает перерисовку канваса
-	}
+        switch (key.Key)
+        {
+            case Key.Q:
+                Shoulder += delta;
+                break;
 
-	public static void MouseMove(Visual visual, PointerEventArgs e)
-	{
-		// TODO: Измените X и Y пересчитав координаты (e.X, e.Y) в логические.
+            case Key.A:
+                Shoulder -= delta;
+                break;
 
-		UpdateManipulator();
-		visual.InvalidateVisual();
-	}
+            case Key.W:
+                Elbow += delta;
+                break;
 
-	public static void MouseWheel(Visual visual, PointerWheelEventArgs e)
-	{
-		// TODO: Измените Alpha, используя e.Delta.Y — размер прокрутки колеса мыши
+            case Key.S:
+                Elbow -= delta;
+                break;
 
-		UpdateManipulator();
-		visual.InvalidateVisual();
-	}
+            default:
+                return; // Ничего не делаем — не наша клавиша
+        }
 
-	public static void UpdateManipulator()
-	{
-		// Вызовите ManipulatorTask.MoveManipulatorTo и обновите значения полей Shoulder, Elbow и Wrist, 
-		// если они не NaN. Это понадобится для последней задачи.
-	}
+        // Пересчитываем Wrist
+        Wrist = -Alpha - Shoulder - Elbow;
 
-	public static void DrawManipulator(DrawingContext context, Point shoulderPos)
-	{
-		var joints = AnglesToCoordinatesTask.GetJointPositions(Shoulder, Elbow, Wrist);
+        visual.InvalidateVisual();
+    }
 
-		DrawReachableZone(context, ReachableAreaBrush, UnreachableAreaBrush, shoulderPos, joints);
+    public static void MouseMove(Visual visual, PointerEventArgs e)
+    {
+        // Получаем координаты мыши в системе окна
+        var windowPos = e.GetPosition(visual);
 
-		var formattedText = new FormattedText(
-			$"X={X:0}, Y={Y:0}, Alpha={Alpha:0.00}",
-			CultureInfo.InvariantCulture,
-			FlowDirection.LeftToRight,
-			Typeface.Default,
-			18,
-			Brushes.DarkRed
-		)
-		{
-			TextAlignment = TextAlignment.Center
-		};
-		context.DrawText(formattedText, new Point(10, 10));
+        // Позиция плечевого сустава в окне
+        var shoulderPos = GetShoulderPos(visual);
 
-		// Нарисуйте сегменты манипулятора методом ccontext.DrawLine(ManipulatorPen, ...)
-		// Нарисуйте суставы манипулятора окружностями методом context.DrawEllipse(JointBrush, null, ...)
-		// Не забудьте сконвертировать координаты из логических в оконные
-	}
+        // Переводим координаты в логические (математические)
+        var mathPos = ConvertWindowToMath(windowPos, shoulderPos);
 
-	private static void DrawReachableZone(
+        // Сохраняем логические координаты мыши
+        X = mathPos.X;
+        Y = mathPos.Y;
+
+        // Пересчитываем углы манипулятора
+        UpdateManipulator();
+
+        // Перерисовываем
+        visual.InvalidateVisual();
+    }
+
+    public static void MouseWheel(Visual visual, PointerWheelEventArgs e)
+    {
+        const double delta = 0.05;
+
+        // Изменяем Alpha пропорционально прокрутке колеса
+        Alpha += e.Delta.Y * delta;
+
+        // Пересчитываем манипулятор
+        UpdateManipulator();
+
+        // Перерисовка
+        visual.InvalidateVisual();
+    }
+
+    public static void UpdateManipulator()
+    {
+        // Пытаемся найти углы для текущих X, Y, Alpha
+        var angles = ManipulatorTask.MoveManipulatorTo(X, Y, Alpha);
+
+        // Если хоть один угол стал NaN — манипулятор не может дотянуться,
+        // и тогда мы НЕ обновляем суставы (манипулятор "замирает")
+        if (double.IsNaN(angles[0]) ||
+            double.IsNaN(angles[1]) ||
+            double.IsNaN(angles[2]))
+            return;
+
+        // Если решение есть — обновляем углы суставов
+        Shoulder = angles[0];
+        Elbow = angles[1];
+        Wrist = angles[2];
+    }
+
+    public static void DrawManipulator(DrawingContext context, Point shoulderPos)
+    {
+        var joints = AnglesToCoordinatesTask.GetJointPositions(Shoulder, Elbow, Wrist);
+
+        DrawReachableZone(context, ReachableAreaBrush, UnreachableAreaBrush, shoulderPos, joints);
+
+        var formattedText = new FormattedText(
+            $"X={X:0}, Y={Y:0}, Alpha={Alpha:0.00}",
+            CultureInfo.InvariantCulture,
+            FlowDirection.LeftToRight,
+            Typeface.Default,
+            18,
+            Brushes.DarkRed
+        )
+        {
+            TextAlignment = TextAlignment.Left
+        };
+        context.DrawText(formattedText, new Point(10, 10));
+
+        // Переводим логические координаты суставов в оконные
+        var shoulderWindow = shoulderPos;
+        var elbowWindow = ConvertMathToWindow(joints[0], shoulderPos);
+        var wristWindow = ConvertMathToWindow(joints[1], shoulderPos);
+        var effectorWindow = ConvertMathToWindow(joints[2], shoulderPos);
+
+        // Рисуем сегменты манипулятора
+        context.DrawLine(ManipulatorPen, shoulderWindow, elbowWindow);
+        context.DrawLine(ManipulatorPen, elbowWindow, wristWindow);
+        context.DrawLine(ManipulatorPen, wristWindow, effectorWindow);
+
+        // Рисуем суставы (небольшие кружки, например радиус 5)
+        const double r = 5;
+        context.DrawEllipse(JointBrush, null, shoulderWindow, r, r);
+        context.DrawEllipse(JointBrush, null, elbowWindow, r, r);
+        context.DrawEllipse(JointBrush, null, wristWindow, r, r);
+        context.DrawEllipse(JointBrush, null, effectorWindow, r, r);
+    }
+
+    private static void DrawReachableZone(
 		DrawingContext context,
 		Brush reachableBrush,
 		Brush unreachableBrush,

@@ -6,12 +6,42 @@ namespace Geometry
     {
         public double X;
         public double Y;
+
+        // Длина текущего вектора
+        public double GetLength()
+        {
+            return Geometry.GetLength(this);
+        }
+
+        // Сложение текущего вектора с другим
+        public Vector Add(Vector other)
+        {
+            return Geometry.Add(this, other);
+        }
+
+        // Проверка: принадлежит ли текущая точка сегменту
+        public bool Belongs(Segment s)
+        {
+            return Geometry.IsVectorInSegment(this, s);
+        }
     }
 
     public class Segment
     {
         public Vector Begin;
         public Vector End;
+
+        // Длина сегмента
+        public double GetLength()
+        {
+            return Geometry.GetLength(this);
+        }
+
+        // Проверка: содержит ли сегмент указанную точку
+        public bool Contains(Vector p)
+        {
+            return Geometry.IsVectorInSegment(p, this);
+        }
     }
 
     public static class Geometry
@@ -40,18 +70,17 @@ namespace Geometry
             return Math.Sqrt(dx * dx + dy * dy);
         }
 
-        // Проверка, лежит ли точка p на сегменте s
+        // Проверка принадлежности точки p отрезку s
         public static bool IsVectorInSegment(Vector p, Segment s)
         {
-            // Направления Begin→p и Begin→End
+            // Проверка коллинеарности
             double cross = (p.X - s.Begin.X) * (s.End.Y - s.Begin.Y) -
                            (p.Y - s.Begin.Y) * (s.End.X - s.Begin.X);
 
-            // Если cross ≠ 0 — точка не на линии (учитываем погрешность)
             if (Math.Abs(cross) > 1e-9)
                 return false;
 
-            // Проверка, что точка лежит между Begin и End (по диапазонам координат)
+            // Проверка попадания в диапазоны координат
             double minX = Math.Min(s.Begin.X, s.End.X);
             double maxX = Math.Max(s.Begin.X, s.End.X);
             double minY = Math.Min(s.Begin.Y, s.End.Y);

@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\TopIt\\Coding\\GeometryPainting\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{472A1C0F-8F93-A513-361B-E0F4ABC086C5}|GeometryPainting.csproj|c:\\topit\\coding\\geometrypainting\\segmentextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{472A1C0F-8F93-A513-361B-E0F4ABC086C5}|GeometryPainting.csproj|solutionrelative:segmentextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SegmentExtensions.cs",
+              "DocumentMoniker": "C:\\TopIt\\Coding\\GeometryPainting\\SegmentExtensions.cs",
+              "RelativeDocumentMoniker": "SegmentExtensions.cs",
+              "ToolTip": "C:\\TopIt\\Coding\\GeometryPainting\\SegmentExtensions.cs",
+              "RelativeToolTip": "SegmentExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T06:44:07.63Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

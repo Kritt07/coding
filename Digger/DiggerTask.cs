@@ -69,9 +69,7 @@ class Terrain : ICreature
 
     public bool DeadInConflict(ICreature conflictedObject)
     {
-        if (conflictedObject is Player)
-            return true;
-        return false;
+        return conflictedObject is Player;
     }
 
     public int GetDrawingPriority()

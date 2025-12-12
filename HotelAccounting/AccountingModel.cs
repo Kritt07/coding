@@ -14,7 +14,7 @@ class AccountingModel : ModelBase
 {
     private double price;
     private int nightsCount;
-    public double Discount { get; set; }
+    private double discount;
     private double total;
 
     public double Price
@@ -39,12 +39,22 @@ class AccountingModel : ModelBase
         }
     }
 
+    public double Discount
+    { 
+        get { return discount; }
+        set
+        {
+            discount  = value;
+            Notify(nameof(Discount));
+        }
+    }
+
     public double Total
     {
         get { return total; }
         set
         {
-            if (value < 0 || value != Price * NightsCount * (1 - Discount / 100)) throw new ArgumentException();
+            if (value < 0) throw new ArgumentException();
             total = value;
             Notify(nameof(Total));
         }

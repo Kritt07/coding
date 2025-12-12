@@ -22,6 +22,14 @@ public enum Priority
     Monster = 1//Монстр
 };
 
+public enum Direction
+{
+    Up,
+    Left,
+    Down,
+    Right
+}
+
 class Player : ICreature
 {
     public CreatureCommand Act(int x, int y)
@@ -212,7 +220,9 @@ class Monster : ICreature
 
     public bool DeadInConflict(ICreature conflictedObject)
     {
-        return conflictedObject is Sack || conflictedObject is Monster;
+        return conflictedObject is Sack ||
+        conflictedObject is Monster ||
+        conflictedObject is SpecialMonster;
     }
 
     public int GetDrawingPriority()
@@ -240,5 +250,82 @@ class Monster : ICreature
                     return new[] { playerCordX, playerCordY };
                 }
         return new[] { -1, -1 };
+    }
+}
+
+class SpecialMonster : ICreature
+{
+    public Direction lastDirection = 0;
+    public CreatureCommand Act(int x, int y)
+    {
+        if (!checkNoObstacle(lastDirection, x, y))
+        {
+            Random random = new Random();
+            lastDirection = (Direction)random.Next(0, 4);
+        }
+
+        if (lastDirection == Direction.Up && IsCreatureHere(x, y - 1, null))
+            return DirectionMove(Direction.Up);
+        else if (lastDirection == Direction.Right && IsCreatureHere(x + 1, y, null))
+            return DirectionMove(Direction.Right);
+        else if (lastDirection == Direction.Down && IsCreatureHere(x, y + 1, null))
+            return DirectionMove(Direction.Down);
+        else
+            return DirectionMove(Direction.Left);
+    }
+
+    public bool DeadInConflict(ICreature conflictedObject)
+    {
+        return conflictedObject is Sack ||
+        conflictedObject is Monster ||
+        conflictedObject is SpecialMonster;
+    }
+
+    public int GetDrawingPriority()
+    {
+        return (int)Priority.Monster;
+    }
+
+    public string GetImageFileName()
+    {
+        return "SpecialMonster.png";
+    }
+
+    public bool IsCreatureHere(int x, int y, ICreature obj)
+    {
+        var creature = Game.Map[x, y];
+        if (obj == null)
+            return creature is null;
+        return creature.GetType() == obj.GetType();
+    }
+
+    public CreatureCommand DirectionMove(Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.Up:
+                return new CreatureCommand() { DeltaY = -1 };
+            case Direction.Right:
+                return new CreatureCommand() { DeltaX = 1 };
+            case Direction.Down:
+                return new CreatureCommand() { DeltaY = 1 };
+            default:
+                return new CreatureCommand() { DeltaX = -1 };
+        }
+    }
+
+    public bool checkNoObstacle(Direction direction, int x, int y)
+    {
+        switch (direction)
+        {
+            case Direction.Up:
+                return IsCreatureHere(x, y - 1, null);
+            case Direction.Right:
+                return IsCreatureHere(x + 1, y, null);
+            case Direction.Down:
+                return IsCreatureHere(x, y + 1, null);
+            default:
+                return IsCreatureHere(x - 1, y, null);
+        }
     }
 }

@@ -5,10 +5,9 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using Avalonia.Diagnostics;
+using DynamicData.Tests;
 
 namespace HotelAccounting;
-
-//создайте класс AccountingModel здесь
 
 class AccountingModel : ModelBase
 {
@@ -19,54 +18,65 @@ class AccountingModel : ModelBase
 
     public double Price
     {
-        get { return price; }
+        get => price;
         set
         {
-            if (value < 0) throw new ArgumentException();
+            if (value < 0)
+                throw new ArgumentException();
+
             price = value;
+            total = price * nightsCount * (1 - discount / 100);
+
             Notify(nameof(Price));
+            Notify(nameof(Total));
         }
     }
 
     public int NightsCount
     {
-        get { return nightsCount; }
+        get => nightsCount;
         set
         {
-            if (value <= 0) throw new  ArgumentException();
+            if (value <= 0)
+                throw new ArgumentException();
+
             nightsCount = value;
+            total = price * nightsCount * (1 - discount / 100);
+
             Notify(nameof(NightsCount));
+            Notify(nameof(Total));
         }
     }
 
     public double Discount
-    { 
-        get { return discount; }
+    {
+        get => discount;
         set
         {
-            discount  = value;
+            discount = value;
+            total = price * nightsCount * (1 - discount / 100);
+
+            if (total < 0)
+                throw new ArgumentException();
+            
             Notify(nameof(Discount));
+            Notify(nameof(Total));
         }
     }
 
     public double Total
     {
-        get { return total; }
+        get => total;
         set
         {
-            if (value < 0) throw new ArgumentException();
-            total = value;
-            Notify(nameof(Total));
-        }
-    }
+            if (value < 0)
+                throw new ArgumentException();
 
-    private void Notify (string name)
-    {
-        if (name == nameof(Total))
-        {
-            var newDiscount = 100 * (1 - Total / (Price * NightsCount));
-            Discount = newDiscount;
-        } else 
-            Total = Price * NightsCount * (1 - Discount / 100);
+            total = value;
+            discount = 100 * (1 - total / (price * nightsCount));
+
+            Notify(nameof(Total));
+            Notify(nameof(Discount));
+        }
     }
 }

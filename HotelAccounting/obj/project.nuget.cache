@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "C6A890P168g=",
+  "dgSpecHash": "6/lLo+c/320=",
   "success": true,
-  "projectFilePath": "c:\\TopIt\\Coding\\HotelAccounting\\HotelAccounting.csproj",
+  "projectFilePath": "C:\\TopIt\\Coding\\HotelAccounting\\HotelAccounting.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Kritt\\.nuget\\packages\\avalonia\\11.3.6\\avalonia.11.3.6.nupkg.sha512",
     "C:\\Users\\Kritt\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.25547.20250602\\avalonia.angle.windows.natives.2.1.25547.20250602.nupkg.sha512",

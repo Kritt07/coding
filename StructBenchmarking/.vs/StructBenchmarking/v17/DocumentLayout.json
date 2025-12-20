@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\TopIt\\Coding\\StructBenchmarking\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2CD1868-7CA3-D08A-66E9-29E203A3F669}|StructBenchmarking.csproj|c:\\topit\\coding\\structbenchmarking\\experimentstask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2CD1868-7CA3-D08A-66E9-29E203A3F669}|StructBenchmarking.csproj|solutionrelative:experimentstask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2CD1868-7CA3-D08A-66E9-29E203A3F669}|StructBenchmarking.csproj|c:\\topit\\coding\\structbenchmarking\\benchmarktask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2CD1868-7CA3-D08A-66E9-29E203A3F669}|StructBenchmarking.csproj|solutionrelative:benchmarktask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2CD1868-7CA3-D08A-66E9-29E203A3F669}|StructBenchmarking.csproj|c:\\topit\\coding\\structbenchmarking\\arraycreationtasks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2CD1868-7CA3-D08A-66E9-29E203A3F669}|StructBenchmarking.csproj|solutionrelative:arraycreationtasks.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,24 +22,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ExperimentsTask.cs",
+              "DocumentMoniker": "C:\\TopIt\\Coding\\StructBenchmarking\\ExperimentsTask.cs",
+              "RelativeDocumentMoniker": "ExperimentsTask.cs",
+              "ToolTip": "C:\\TopIt\\Coding\\StructBenchmarking\\ExperimentsTask.cs",
+              "RelativeToolTip": "ExperimentsTask.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAkwD0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-20T10:44:40.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "BenchmarkTask.cs",
               "DocumentMoniker": "C:\\TopIt\\Coding\\StructBenchmarking\\BenchmarkTask.cs",
               "RelativeDocumentMoniker": "BenchmarkTask.cs",
               "ToolTip": "C:\\TopIt\\Coding\\StructBenchmarking\\BenchmarkTask.cs",
               "RelativeToolTip": "BenchmarkTask.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAowDQAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-20T10:03:31.017Z",
+              "WhenOpened": "2025-12-20T10:48:42.086Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ArrayCreationTasks.cs",
+              "DocumentMoniker": "C:\\TopIt\\Coding\\StructBenchmarking\\ArrayCreationTasks.cs",
+              "RelativeDocumentMoniker": "ArrayCreationTasks.cs",
+              "ToolTip": "C:\\TopIt\\Coding\\StructBenchmarking\\ArrayCreationTasks.cs",
+              "RelativeToolTip": "ArrayCreationTasks.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAA9wBoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-20T10:45:58.641Z",
+              "EditorCaption": ""
             }
           ]
         }

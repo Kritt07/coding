@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StructBenchmarking")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28ebe0a47874dbd6b8c2a0456c077d1b2e6ff198")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c1ff98cb72c77d46d17de15dc4ed8d4d62000201")]
 [assembly: System.Reflection.AssemblyProductAttribute("StructBenchmarking")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StructBenchmarking")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
